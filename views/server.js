@@ -1,31 +1,34 @@
-//1. import http module
-const http = require('http');
-const fs=require('fs');
-//2. set up server
-const server=http.createServer((req,res)=>{
-    console.log("A request has been sent from the browser to the server")
-    console.log(req)
-    console.log(req.method);
-    console.log(req.url);
-
-    //to set the response from the server. We set the header. header is a key in both req and res object. we can only set the header of res obj
-    
-    
-                 //ways to set response (i) plain text
-    // res.setHeader('Content-Type', 'text/plain');
-    // res.write("When response has been set ")
-    // res.write("using plain text")
-    // //it is vital to end the response
-    // res.end();
-
-                 //(ii) html
- res.setHeader('Content-Type', "text/html")
- res.write("<h1> This response came through </h1>")
- res.write("<h2> HTML</h2>")
- res.end();
+//Creating a server using node js and http methods
 
 
-                //(iii)  webpages
+                                     //Step 1   Require http module from node
+                                     const http=require('http');
+                                     const server= http.createServer((req,res)=>{   //.createserver is a method of http module used to create server
+                                         console.log("A req from browser to server received") //once server has been created and it gets a req the callback is fired
+                                         // console.log("The request object", req)
+                                         console.log(req.method);
+                                         console.log(req.url);
+                                     
+                                         //1.2  To send response we have numerous ways
+                                         //to set the response from the server. We set the header. header is a key in both req and res object. we can only set the header of res obj
+                                        //ways to set response 
+                                            //(i) plain text
+                                         // res.setHeader('Content-Type', 'text/plain');
+                                         // res.write("When response has been set ")
+                                         // res.write("using plain text")
+                                         // //it is vital to end the response
+                                         // res.end();
+                                             //(ii) html
+                                    //   res.setHeader('Content-Type', "text/html")
+                                    //   res.write("<h1> This response came through </h1>")
+                                    //   res.write("<h2> HTML</h2>")
+                                    //   res.end();
+                                     
+                                    //  })
+                                     
+
+
+                //(iii)  webpages using file system module so we need to require fs module 
 res.setHeader("Content-Type", "text/html");
 let path='';
 switch(req.url){
@@ -59,7 +62,9 @@ switch(req.url){
     }
    })
 
-                })
+
+})
+                
 
 3.//make the server connection
 //port number , hostname, cb
